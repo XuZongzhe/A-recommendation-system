@@ -1,0 +1,24 @@
+# Common Features
+# 定义用户ID和物品ID的字段名，这些是在数据集中用于唯一标识用户和物品的字段
+USER_ID_FIELD: user  # 用户ID的字段名
+ITEM_ID_FIELD: item  # 物品ID的字段名
+
+# 注意：RATING_FIELD被注释掉了，可能意味着在当前数据集中不使用评分字段，或者评分字段将在后续处理中单独处理
+#RATING_FIELD: rating  # 评分字段名（如果有的话）
+
+# 定义时间戳字段名，这个字段通常用于记录用户与物品交互的时间
+TIME_FIELD: timestamp
+
+# Selectively Loading
+# 指定在加载数据时，应该选择哪些列进行加载。这有助于减少内存使用和提高处理速度
+load_cols: [item, user, timestamp]  # 加载的列列表，包括物品ID、用户ID和时间戳
+
+# Filtering
+# 定义用于过滤用户和物品的交互数量的参数。这有助于去除那些交互过少的用户和物品，因为它们可能不足以进行有效的推荐
+max_user_inter_num: ~  # 最大用户交互数，这里使用波浪线（~）表示不设置上限
+min_user_inter_num: 3  # 最小用户交互数，只有交互数至少为5的用户才会被保留
+max_item_inter_num: ~  # 最大物品交互数，同样不设置上限
+min_item_inter_num: 3  # 最小物品交互数，只有交互数至少为5的物品才会被保留
+
+# 定义字段分隔符，这在处理CSV或类似格式的文件时非常重要
+field_separator: ","  # 字段分隔符，这里使用逗号（,）作为分隔符
